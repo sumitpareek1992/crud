@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.main {
+			text-align: right;
+			margin-top: 1%;
+			margin-right: 5%;
+
+		}
+	</style>
+</head>
+<body>
+	{% block content %}
+	<div class="main">
+		<a href="{% url 'create'%}">Add Emp</a>
+		
+	</div>
+	<table border="2">
+		<tr>
+			<th>Employee ID</th>
+			<th>Email</th>
+			<th>User Name</th>
+			<th>Date of Birth</th>
+			<th>Profile Pic</th>
+			<th>Operations</th>
+
+		</tr>
+		{% for obj in post %}
+		<tr>
+			<td>{{ obj.emp_id }}</td>
+			<td>{{ obj.email }}</td>
+			<td>{{ obj.username }}</td>
+			<td>{{ obj.dob }}</td>
+			<td> <img src="{{ obj.pic.url }}"  width="50" height="50"> </td>
+			<td>
+			<a href="/update/{{ obj.id }}">UPDATE</a>
+			<a href="/delete/{{obj.id }}">DELETE</a> 
+			</td>
+
+		</tr>
+		{% endfor %}
+		
+	</table>
+	{% endblock %}
+
+</body>
+</html>
